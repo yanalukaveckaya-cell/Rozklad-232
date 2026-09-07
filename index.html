@@ -3,181 +3,454 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Розклад РЗ-232</title>
+<title>РЗ-232</title>
 
 <style>
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-body {
-    margin: 0;
-    background: #f3f5fa;
-    color: #1d2330;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+body{
+  margin:0;
+  background:#f3f5fa;
+  color:#1d2330;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
 }
 
-.container {
-    max-width: 720px;
-    margin: auto;
-    padding: 16px;
+.container{
+  max-width:760px;
+  margin:auto;
+  padding:15px
 }
 
-.header {
-    background: linear-gradient(135deg,#6674f4,#8468e9);
-    color: white;
-    border-radius: 24px;
-    padding: 28px 24px;
-    margin-bottom: 16px;
+.header{
+  background:linear-gradient(135deg,#6674f4,#8669ee);
+  color:white;
+  padding:25px 21px;
+  border-radius:23px;
+  margin-bottom:13px
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 32px;
+.header h1{
+  margin:0;
+  font-size:31px
 }
 
-.header p {
-    margin: 10px 0 0;
-    font-size: 17px;
+.header p{
+  margin:7px 0 0;
+  opacity:.96
 }
 
-.nav {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr 1fr;
-    gap: 7px;
-    margin-bottom: 8px;
+/* ГОЛОВНЕ МЕНЮ */
+
+.main-menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:10px
 }
 
-button {
-    border: 0;
-    border-radius: 14px;
-    background: white;
-    padding: 14px 6px;
-    font-size: 13px;
-    font-weight: 800;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+.main-menu button{
+  padding:14px 8px;
+  border:0;
+  border-radius:14px;
+  font-weight:800;
+  font-size:14px;
+  background:white;
+  box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 
-.today {
-    background: #6574f4;
-    color: white;
+.main-menu .active{
+  background:#6574f4;
+  color:white
 }
 
-.week-button {
-    width: 100%;
-    margin-bottom: 14px;
-    font-size: 15px;
+/* НАВІГАЦІЯ */
+
+.nav{
+  display:grid;
+  grid-template-columns:1fr 1.15fr 1fr;
+  gap:7px;
+  margin-bottom:8px
 }
 
-.week-info {
-    background: #fff4d8;
-    border-radius: 14px;
-    padding: 13px 16px;
-    font-weight: 800;
-    margin-bottom: 14px;
+.nav button,
+.week-button{
+  border:0;
+  background:white;
+  border-radius:13px;
+  padding:13px 5px;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 
-.day {
-    background: white;
-    border-radius: 22px;
-    padding: 18px;
-    margin-bottom: 14px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.05);
+.nav .today{
+  background:#6574f4;
+  color:white
 }
 
-.day-title {
-    font-size: 25px;
-    font-weight: 850;
-    margin-bottom: 10px;
+.week-button{
+  width:100%;
+  margin-bottom:12px
 }
 
-.date {
-    font-size: 15px;
-    color: #777;
-    margin-left: 8px;
+.week-info{
+  background:#fff3d5;
+  padding:12px 14px;
+  border-radius:13px;
+  font-weight:800;
+  margin-bottom:12px
 }
 
-.lesson {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 12px;
-    padding: 17px 0;
-    border-top: 1px solid #eee;
+/* ДЕНЬ */
+
+.day{
+  background:white;
+  border-radius:20px;
+  padding:17px;
+  margin-bottom:13px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06)
 }
 
-.time {
-    color: #5262dc;
-    font-weight: 850;
-    font-size: 17px;
-    line-height: 1.25;
+.day-title{
+  font-size:23px;
+  font-weight:850;
+  margin-bottom:7px
 }
 
-.period {
-    color: #888;
-    font-size: 13px;
-    margin-top: 4px;
+.date{
+  color:#777;
+  font-size:14px;
+  margin-left:6px
 }
 
-.subject {
-    font-size: 17px;
-    font-weight: 850;
-    line-height: 1.3;
+.lesson{
+  display:grid;
+  grid-template-columns:86px 1fr;
+  gap:11px;
+  padding:16px 0;
+  border-top:1px solid #eee
 }
 
-.type {
-    display: inline-block;
-    margin-top: 7px;
-    background: #eef0ff;
-    color: #5362d8;
-    padding: 5px 9px;
-    border-radius: 9px;
-    font-weight: 750;
-    font-size: 13px;
+.time{
+  color:#5262d9;
+  font-weight:850;
+  font-size:16px
 }
 
-.teacher {
-    margin-top: 7px;
-    color: #777;
-    font-size: 14px;
+.period{
+  color:#888;
+  font-size:12px;
+  margin-top:4px
 }
 
-.weeks {
-    margin-top: 6px;
-    color: #c96919;
-    font-weight: 750;
-    font-size: 13px;
+.subject{
+  font-size:16px;
+  font-weight:850;
+  line-height:1.35
 }
 
-.join {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 13px;
-    border-radius: 11px;
-    background: #6574f4;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 850;
+.type{
+  display:inline-block;
+  margin-top:6px;
+  padding:5px 8px;
+  background:#eef0ff;
+  color:#5060d8;
+  font-size:12px;
+  font-weight:750;
+  border-radius:8px
 }
 
-.empty {
-    padding: 15px 0 5px;
-    color: #888;
+.teacher{
+  margin-top:6px;
+  font-size:13px;
+  color:#777
 }
 
-.footer {
-    text-align: center;
-    color: #999;
-    font-size: 13px;
-    padding: 15px 0 30px;
+.weeks{
+  margin-top:6px;
+  color:#ce6e17;
+  font-size:12px;
+  font-weight:750
 }
 
-@media (max-width: 400px) {
-    .lesson {
-        grid-template-columns: 78px 1fr;
-    }
+.lesson-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px
+}
 
-    button {
-        font-size: 12px;
-    }
+.join,
+.hw-small{
+  display:inline-block;
+  border:0;
+  border-radius:10px;
+  padding:9px 11px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800
+}
+
+.join{
+  background:#6574f4;
+  color:white
+}
+
+.hw-small{
+  background:#f0f1f6;
+  color:#292d3a
+}
+
+.empty{
+  color:#777;
+  padding:13px 0 5px
+}
+
+/* ДОМАШКА */
+
+.homework-header{
+  background:white;
+  border-radius:19px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05)
+}
+
+.homework-header h2{
+  margin:0 0 7px;
+  font-size:23px
+}
+
+.homework-header p{
+  color:#777;
+  margin:0;
+  font-size:13px
+}
+
+.add-homework{
+  width:100%;
+  margin-top:13px;
+  border:0;
+  border-radius:13px;
+  padding:13px;
+  background:#6574f4;
+  color:white;
+  font-weight:850;
+  font-size:15px
+}
+
+.filters{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-bottom:9px;
+  margin-bottom:4px
+}
+
+.filters button{
+  flex:0 0 auto;
+  border:0;
+  padding:9px 12px;
+  border-radius:20px;
+  background:white;
+  font-size:12px;
+  font-weight:750
+}
+
+.filters button.active{
+  background:#6574f4;
+  color:white
+}
+
+.hw-card{
+  background:white;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:11px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05)
+}
+
+.hw-card.done{
+  opacity:.6
+}
+
+.hw-card.done .hw-title{
+  text-decoration:line-through
+}
+
+.hw-title{
+  font-weight:850;
+  font-size:16px;
+  line-height:1.35
+}
+
+.hw-text{
+  margin-top:9px;
+  line-height:1.45;
+  white-space:pre-wrap
+}
+
+.deadline{
+  display:inline-block;
+  margin-top:9px;
+  padding:6px 9px;
+  border-radius:9px;
+  background:#f0f1f6;
+  font-size:12px;
+  font-weight:750
+}
+
+.deadline.todayDeadline{
+  background:#ffe6d8;
+  color:#bd4800
+}
+
+.deadline.overdue{
+  background:#ffe1e1;
+  color:#bb2020
+}
+
+.deadline.soon{
+  background:#fff3d5;
+  color:#9d6200
+}
+
+.file-box{
+  margin-top:9px;
+  padding:9px 10px;
+  border-radius:10px;
+  background:#f5f6fa;
+  font-size:13px
+}
+
+.file-open{
+  border:0;
+  background:none;
+  color:#5262d9;
+  padding:0;
+  font-weight:800;
+  font-size:13px
+}
+
+.hw-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px
+}
+
+.hw-actions button{
+  border:0;
+  border-radius:10px;
+  padding:9px 11px;
+  font-weight:800;
+  font-size:12px
+}
+
+.done-btn{
+  background:#e5f6e9;
+  color:#26733a
+}
+
+.edit-btn{
+  background:#edf0ff;
+  color:#4858ca
+}
+
+.delete-btn{
+  background:#ffe8e8;
+  color:#b83232
+}
+
+/* ФОРМА */
+
+.form-card{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06)
+}
+
+.form-card h2{
+  margin:0 0 15px
+}
+
+.field{
+  margin-bottom:13px
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:6px
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid #dfe2eb;
+  border-radius:11px;
+  padding:12px;
+  background:white;
+  font-size:16px;
+  font-family:inherit
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical
+}
+
+.form-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+
+.form-buttons button{
+  border:0;
+  border-radius:12px;
+  padding:12px;
+  font-weight:850;
+  font-size:14px
+}
+
+.save-btn{
+  background:#6574f4;
+  color:white
+}
+
+.cancel-btn{
+  background:#edf0f5
+}
+
+.note{
+  background:#eef0ff;
+  padding:11px;
+  border-radius:11px;
+  color:#4d58a8;
+  font-size:12px;
+  line-height:1.4;
+  margin-bottom:13px
+}
+
+.footer{
+  text-align:center;
+  color:#999;
+  font-size:12px;
+  padding:20px 0 30px
+}
+
+.hidden{
+  display:none!important
+}
+
+@media(max-width:400px){
+  .lesson{grid-template-columns:76px 1fr}
+  .nav button{font-size:12px;padding:12px 3px}
 }
 </style>
 </head>
@@ -186,623 +459,1157 @@ button {
 
 <div class="container">
 
-    <div class="header">
-        <h1>🎓 РЗ-232</h1>
-        <p id="headerDate"></p>
+<div class="header">
+  <h1>🎓 РЗ-232</h1>
+  <p id="headerText">Розклад занять</p>
+</div>
+
+<div class="main-menu">
+  <button id="scheduleTab" class="active" onclick="openSchedule()">📅 Розклад</button>
+  <button id="homeworkTab" onclick="openHomework()">📚 Домашка <span id="hwCount"></span></button>
+</div>
+
+<!-- РОЗКЛАД -->
+<div id="scheduleSection">
+
+  <div class="nav">
+    <button onclick="previousDay()">⬅️ Назад</button>
+    <button class="today" onclick="goToday()">📅 Сьогодні</button>
+    <button onclick="nextDay()">Вперед ➡️</button>
+  </div>
+
+  <button class="week-button" onclick="showWholeWeek()">🗓 Весь тиждень</button>
+
+  <div id="weekInfo"></div>
+  <div id="scheduleContent"></div>
+
+</div>
+
+<!-- ДОМАШКА -->
+<div id="homeworkSection" class="hidden">
+
+  <div class="homework-header">
+    <h2>📚 Домашні завдання</h2>
+    <p>Усі завдання зберігаються тільки на цьому пристрої.</p>
+    <button class="add-homework" onclick="openHomeworkForm()">＋ Додати домашку</button>
+  </div>
+
+  <div class="filters">
+    <button id="filterAll" class="active" onclick="setFilter('all')">Усі</button>
+    <button id="filterActive" onclick="setFilter('active')">⏳ Актуальні</button>
+    <button id="filterOverdue" onclick="setFilter('overdue')">⚠️ Прострочені</button>
+    <button id="filterDone" onclick="setFilter('done')">✅ Виконані</button>
+  </div>
+
+  <div id="homeworkList"></div>
+
+</div>
+
+<!-- ФОРМА -->
+<div id="homeworkFormSection" class="hidden">
+
+  <div class="form-card">
+
+    <h2 id="formTitle">📝 Нова домашка</h2>
+
+    <div class="note">
+      📎 Файл теж можна додати. Він буде збережений локально у браузері на цьому пристрої.
     </div>
 
-    <div class="nav">
-        <button onclick="previousDay()">⬅️ Назад</button>
-        <button class="today" onclick="goToday()">📅 Сьогодні</button>
-        <button onclick="nextDay()">Вперед ➡️</button>
+    <div class="field">
+      <label>Предмет</label>
+      <select id="hwSubject"></select>
     </div>
 
-    <button class="week-button" onclick="showWholeWeek()">
-        🗓 Весь тиждень
-    </button>
-
-    <div id="weekInfo"></div>
-    <div id="content"></div>
-
-    <div class="footer">
-        Розклад РЗ-232 • 1 семестр
+    <div class="field">
+      <label>Що потрібно зробити?</label>
+      <textarea id="hwText" placeholder="Наприклад: виконати лабораторну №2, підготувати звіт..."></textarea>
     </div>
+
+    <div class="field">
+      <label>📅 Здати до</label>
+      <input id="hwDue" type="date">
+    </div>
+
+    <div class="field">
+      <label>📎 Прикріпити файл</label>
+      <input id="hwFile" type="file">
+      <div id="currentFile" style="font-size:12px;color:#777;margin-top:6px"></div>
+    </div>
+
+    <div class="form-buttons">
+      <button class="cancel-btn" onclick="cancelHomeworkForm()">Скасувати</button>
+      <button class="save-btn" onclick="saveHomework()">💾 Зберегти</button>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">РЗ-232 • 1 семестр • 2026</div>
 
 </div>
 
 <script>
 
-const times = {
-    1: "08:00–09:35",
-    2: "09:50–11:25",
-    3: "11:40–13:15",
-    4: "13:30–15:05"
+/* =============================
+   ЧАС ПАР
+============================= */
+
+const times={
+  1:"08:00–09:35",
+  2:"09:50–11:25",
+  3:"11:40–13:15",
+  4:"13:30–15:05"
 };
 
-/* =========================
+
+/* =============================
    ПОСИЛАННЯ
-========================= */
+============================= */
 
-const links = {
+const links={
 
-    accessLecture:
-    "https://meet.google.com/mgt-bmnn-hgu",
+  accessLecture:
+  "https://meet.google.com/mgt-bmnn-hgu",
 
-    accessLab:
-    "https://meet.google.com/rzc-eycg-ooq",
+  accessLab:
+  "https://meet.google.com/rzc-eycg-ooq",
 
-    cloud:
-    "https://us04web.zoom.us/j/75523031710?pwd=8qb2Fz4vdLcajVKsxlX7chpuQ6PCSH.1",
+  cloud:
+  "https://us04web.zoom.us/j/75523031710?pwd=8qb2Fz4vdLcajVKsxlX7chpuQ6PCSH.1",
 
-    methodsLab:
-    "https://us04web.zoom.us/j/5488209266?pwd=kAn1qlrBilMOIYGQ7ZDw48bFbBobCY.1&omn=74899672410",
+  methodsLab:
+  "https://us04web.zoom.us/j/5488209266?pwd=kAn1qlrBilMOIYGQ7ZDw48bFbBobCY.1&omn=74899672410",
 
-    steg:
-    "https://us05web.zoom.us/j/6012015122?pwd=bEp2tsMJoxeYHeevUVF1AQGR0GnBcG.1#success",
+  steg:
+  "https://us05web.zoom.us/j/6012015122?pwd=bEp2tsMJoxeYHeevUVF1AQGR0GnBcG.1#success",
 
-    cyber:
-    "https://meet.google.com/hbq-szcd-tne",
+  cyber:
+  "https://meet.google.com/hbq-szcd-tne",
 
-    protectedSystems:
-    "https://meet.google.com/rum-tati-rno"
+  protected:
+  "https://meet.google.com/rum-tati-rno",
+
+  sadchenko:
+  "https://us04web.zoom.us/j/3856787724?pwd=NnNzc1B6SWk5UkNsZ2FKSHE1VE85Zz09"
+
 };
 
 
-/* =========================
-   РОЗКЛАД РЗ-232
-========================= */
+/* =============================
+   РОЗКЛАД
+============================= */
 
-const schedule = {
+const schedule={
 
-1: {
-    name: "Понеділок",
-    lessons: [
+1:{
+name:"Понеділок",
+lessons:[
 
-        {
-            number: 1,
-            subject: "Основи стеганографії",
-            type: "Лекція",
-            teacher: "Борисенко І.І.",
-            weeks: "all",
-            link: links.steg
-        },
-
-        {
-            number: 2,
-            subject: "Проєктування захищених інформаційних систем",
-            type: "Лекція",
-            teacher: "Шаповалов Т.В.",
-            weeks: "all",
-            link: links.protectedSystems
-        },
-
-        {
-            number: 3,
-            subject: "Проєктування захищених інформаційних систем",
-            type: "Лабораторна",
-            teacher: "Шаповалов Т.В.",
-            weeks: "even",
-            link: links.protectedSystems
-        }
-    ]
+{
+number:1,
+subject:"Основи стеганографії",
+type:"Лекція",
+teacher:"Борисенко І.І.",
+weeks:"all",
+link:links.steg
 },
 
-
-2: {
-    name: "Вівторок",
-    lessons: [
-
-        {
-            number: 1,
-            subject: "Управління доступом",
-            type: "Лекція",
-            teacher: "Сиропятов О.А.",
-            weeks: "all",
-            link: links.accessLecture
-        },
-
-        {
-            number: 2,
-            subject: "Методи оцінки захищеності інформаційних систем",
-            type: "Лекція",
-            teacher: "Агаджанян О.В.",
-            weeks: "all",
-            link: links.cloud
-        },
-
-        {
-            number: 3,
-            subject: "Основи захищених хмарних технологій",
-            type: "Лабораторна",
-            teacher: "Агаджанян О.В.",
-            weeks: "even",
-            link: links.cloud
-        },
-
-        {
-            number: 4,
-            subject: "Основи захисту мобільних пристроїв",
-            type: "Лабораторна",
-            teacher: "Садченко А.В.",
-            weeks: "even",
-            link: ""
-        }
-    ]
+{
+number:2,
+subject:"Проєктування захищених інформаційних систем",
+type:"Лекція",
+teacher:"Шаповалов Т.В.",
+weeks:"all",
+link:links.protected
 },
 
+{
+number:3,
+subject:"Проєктування захищених інформаційних систем",
+type:"Лабораторна",
+teacher:"Шаповалов Т.В.",
+weeks:"even",
+link:links.protected
+}
 
-3: {
-    name: "Середа",
-    lessons: [
+]},
 
-        {
-            number: 2,
-            subject: "Основи стеганографії",
-            type: "Лабораторна",
-            teacher: "Борисенко І.І.",
-            weeks: "all",
-            link: links.steg
-        },
+2:{
+name:"Вівторок",
+lessons:[
 
-        {
-            number: 3,
-            subject: "Управління кібербезпекою",
-            type: "Лекція",
-            teacher: "Мельник М.О.",
-            weeks: "all",
-            link: links.cyber
-        },
-
-        {
-            number: 4,
-            subject: "Управління кібербезпекою",
-            type: "Лабораторна",
-            teacher: "Мельник М.О.",
-            weeks: "all",
-            link: links.cyber
-        }
-    ]
+{
+number:1,
+subject:"Управління доступом",
+type:"Лекція",
+teacher:"Сиропятов О.А.",
+weeks:"all",
+link:links.accessLecture
 },
 
-
-4: {
-    name: "Четвер",
-    lessons: [
-
-        {
-            number: 1,
-            subject: "Управління доступом",
-            type: "Лабораторна",
-            teacher: "Вінковська І.С.",
-            weeks: "all",
-            link: links.accessLab
-        },
-
-        {
-            number: 2,
-            subject: "Методи оцінки захищеності інформаційних систем",
-            type: "Лабораторна",
-            teacher: "Дорофєєв Ю.М.",
-            weeks: "all",
-            link: links.methodsLab
-        },
-
-        {
-            number: 3,
-            subject: "Основи захисту мобільних пристроїв",
-            type: "Лекція",
-            teacher: "Садченко А.В.",
-            weeks: "all",
-            link: ""
-        }
-    ]
+{
+number:2,
+subject:"Методи оцінки захищеності інформаційних систем",
+type:"Лекція",
+teacher:"Агаджанян О.В.",
+weeks:"all",
+link:""
 },
 
+{
+number:3,
+subject:"Основи захищених хмарних технологій",
+type:"Лабораторна",
+teacher:"Агаджанян О.В.",
+weeks:"even",
+link:links.cloud
+},
 
-5: {
-    name: "П’ятниця",
-    lessons: []
+{
+number:4,
+subject:"Основи захисту мобільних пристроїв",
+type:"Лабораторна",
+teacher:"Садченко А.В.",
+weeks:"even",
+link:links.sadchenko
+}
+
+]},
+
+3:{
+name:"Середа",
+lessons:[
+
+{
+number:2,
+subject:"Основи стеганографії",
+type:"Лабораторна",
+teacher:"Борисенко І.І.",
+weeks:"all",
+link:links.steg
+},
+
+{
+number:3,
+subject:"Управління кібербезпекою",
+type:"Лекція",
+teacher:"Мельник М.О.",
+weeks:"all",
+link:links.cyber
+},
+
+{
+number:4,
+subject:"Управління кібербезпекою",
+type:"Лабораторна",
+teacher:"Мельник М.О.",
+weeks:"all",
+link:links.cyber
+}
+
+]},
+
+4:{
+name:"Четвер",
+lessons:[
+
+{
+number:1,
+subject:"Управління доступом",
+type:"Лабораторна",
+teacher:"Вінковська І.С.",
+weeks:"all",
+link:links.accessLab
+},
+
+{
+number:2,
+subject:"Методи оцінки захищеності інформаційних систем",
+type:"Лабораторна",
+teacher:"Дорофєєв Ю.М.",
+weeks:"all",
+link:links.methodsLab
+},
+
+{
+number:3,
+subject:"Основи захисту мобільних пристроїв",
+type:"Лекція",
+teacher:"Садченко А.В.",
+weeks:"all",
+link:links.sadchenko
+}
+
+]},
+
+5:{
+name:"П’ятниця",
+lessons:[]
 }
 
 };
 
 
-/* =========================
+/* =============================
+   СПИСОК ПРЕДМЕТІВ
+============================= */
+
+const subjects=[
+"Основи стеганографії",
+"Проєктування захищених інформаційних систем",
+"Управління доступом",
+"Методи оцінки захищеності інформаційних систем",
+"Основи захищених хмарних технологій",
+"Основи захисту мобільних пристроїв",
+"Управління кібербезпекою"
+];
+
+const subjectSelect=document.getElementById("hwSubject");
+
+subjects.forEach(s=>{
+  const option=document.createElement("option");
+  option.value=s;
+  option.textContent=s;
+  subjectSelect.appendChild(option);
+});
+
+
+/* =============================
    НАВЧАЛЬНІ ТИЖНІ
-   1-й тиждень = 01–06.09
-   2-й = 07–13.09
-========================= */
+============================= */
 
-const semesterStart = new Date(2026, 8, 1, 12, 0, 0);
+const semesterStart=new Date(2026,8,1,12);
+const weekOneMonday=new Date(2026,7,31,12);
 
-const weekOneMonday =
-    new Date(2026, 7, 31, 12, 0, 0);
-
-
-function dateOnly(date) {
-    return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        12,0,0
-    );
+function dateOnly(date){
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    12
+  );
 }
 
+function getAcademicWeek(date){
 
-function getAcademicWeek(date) {
+  const d=dateOnly(date);
 
-    const d = dateOnly(date);
+  if(d<semesterStart)return 0;
 
-    if (d < semesterStart) return 0;
+  const diff=Math.floor(
+    (d-weekOneMonday)/86400000
+  );
 
-    const milliseconds =
-        d - weekOneMonday;
-
-    const days =
-        Math.floor(milliseconds / 86400000);
-
-    return Math.floor(days / 7) + 1;
+  return Math.floor(diff/7)+1;
 }
 
+function lessonIsActive(lesson,week){
 
-function lessonIsActive(lesson, week) {
+  if(week<1||week>15)return false;
 
-    if (week < 1 || week > 15)
-        return false;
+  if(lesson.weeks==="all")return true;
 
-    if (lesson.weeks === "all")
-        return true;
+  if(lesson.weeks==="even")
+    return week%2===0;
 
-    if (lesson.weeks === "even")
-        return week % 2 === 0;
+  if(lesson.weeks==="odd")
+    return week%2!==0;
 
-    if (lesson.weeks === "odd")
-        return week % 2 !== 0;
-
-    return false;
+  return false;
 }
 
+function formatDate(date){
 
-function formatDate(date) {
-
-    return date.toLocaleDateString(
-        "uk-UA",
-        {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        }
-    );
-}
-
-
-function weeksText(type) {
-
-    if (type === "even")
-        return "Парні тижні: 2, 4, 6, 8, 10, 12, 14";
-
-    if (type === "odd")
-        return "Непарні тижні: 1, 3, 5, 7, 9, 11, 13, 15";
-
-    return "Кожного тижня";
-}
-
-
-/* =========================
-   СТВОРЕННЯ ДНЯ
-========================= */
-
-function renderDayCard(date) {
-
-    const dayNumber = date.getDay();
-    const week = getAcademicWeek(date);
-
-    if (dayNumber === 0 || dayNumber === 6) {
-
-        const weekend =
-            dayNumber === 6
-            ? "Субота"
-            : "Неділя";
-
-        return `
-        <div class="day">
-            <div class="day-title">
-                ${weekend}
-                <span class="date">
-                    ${formatDate(date)}
-                </span>
-            </div>
-
-            <div class="empty">
-                Вихідний 🎉
-            </div>
-        </div>
-        `;
+  return date.toLocaleDateString(
+    "uk-UA",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
     }
+  );
+}
 
-    const day = schedule[dayNumber];
+function weeksText(type){
 
-    const activeLessons =
-        day.lessons.filter(
-            lesson =>
-                lessonIsActive(lesson, week)
-        );
+  if(type==="even")
+    return "Парні тижні: 2, 4, 6, 8, 10, 12, 14";
 
-    let html = `
+  if(type==="odd")
+    return "Непарні тижні: 1, 3, 5, 7, 9, 11, 13, 15";
 
+  return "Кожного тижня";
+}
+
+
+/* =============================
+   РЕНДЕР ДНЯ
+============================= */
+
+function renderDayCard(date){
+
+  const dayNumber=date.getDay();
+  const week=getAcademicWeek(date);
+
+  if(dayNumber===0||dayNumber===6){
+
+    const name=
+      dayNumber===6?"Субота":"Неділя";
+
+    return `
     <div class="day">
-
-        <div class="day-title">
-
-            ${day.name}
-
-            <span class="date">
-                ${formatDate(date)}
-            </span>
-
-        </div>
-    `;
-
-
-    if (activeLessons.length === 0) {
-
-        html += `
-        <div class="empty">
-            Пар немає 🎉
-        </div>
-        `;
-    }
-
-
-    activeLessons.forEach(lesson => {
-
-        html += `
-
-        <div class="lesson">
-
-            <div>
-
-                <div class="time">
-                    ${times[lesson.number]}
-                </div>
-
-                <div class="period">
-                    ${lesson.number} пара
-                </div>
-
-            </div>
-
-
-            <div>
-
-                <div class="subject">
-                    ${lesson.subject}
-                </div>
-
-
-                <div class="type">
-                    ${lesson.type}
-                </div>
-
-
-                ${
-                    lesson.teacher
-                    ?
-                    `<div class="teacher">
-                    👨‍🏫 ${lesson.teacher}
-                    </div>`
-                    :
-                    ""
-                }
-
-
-                <div class="weeks">
-                    ${weeksText(lesson.weeks)}
-                </div>
-
-
-                ${
-                    lesson.link
-                    ?
-                    `
-                    <a
-                    class="join"
-                    href="${lesson.link}"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    🎥 Приєднатися до пари
-
-                    </a>
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-
-        </div>
-        `;
-    });
-
-
-    html += "</div>";
-
-    return html;
-}
-
-
-/* =========================
-   ІНФОРМАЦІЯ ПРО ТИЖДЕНЬ
-========================= */
-
-function renderWeekInfo(date) {
-
-    const week =
-        getAcademicWeek(date);
-
-    let text = "";
-
-
-    if (week < 1) {
-
-        text =
-        "Навчальний семестр ще не розпочався";
-
-    } else if (week > 15) {
-
-        text =
-        "15 навчальних тижнів завершено";
-
-    } else {
-
-        const parity =
-            week % 2 === 0
-            ? "парний"
-            : "непарний";
-
-        text =
-        `📚 ${week}-й навчальний тиждень • ${parity}`;
-    }
-
-
-    document.getElementById(
-        "weekInfo"
-    ).innerHTML =
-
-    `<div class="week-info">
-        ${text}
+      <div class="day-title">
+        ${name}
+        <span class="date">${formatDate(date)}</span>
+      </div>
+      <div class="empty">Вихідний 🎉</div>
     </div>`;
+  }
+
+  const day=schedule[dayNumber];
+
+  const lessons=day.lessons.filter(
+    l=>lessonIsActive(l,week)
+  );
+
+  let html=`
+  <div class="day">
+    <div class="day-title">
+      ${day.name}
+      <span class="date">${formatDate(date)}</span>
+    </div>
+  `;
+
+  if(!lessons.length){
+    html+=`<div class="empty">Пар немає 🎉</div>`;
+  }
+
+  lessons.forEach(l=>{
+
+    const encodedSubject=
+      encodeURIComponent(l.subject);
+
+    html+=`
+    <div class="lesson">
+
+      <div>
+        <div class="time">${times[l.number]}</div>
+        <div class="period">${l.number} пара</div>
+      </div>
+
+      <div>
+
+        <div class="subject">${l.subject}</div>
+
+        <div class="type">${l.type}</div>
+
+        ${
+          l.teacher
+          ? `<div class="teacher">👨‍🏫 ${l.teacher}</div>`
+          : ""
+        }
+
+        <div class="weeks">${weeksText(l.weeks)}</div>
+
+        <div class="lesson-actions">
+
+          ${
+            l.link
+            ? `<a class="join"
+                 href="${l.link}"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                 🎥 Приєднатися
+               </a>`
+            : ""
+          }
+
+          <button
+            class="hw-small"
+            onclick="openHomeworkForm(decodeURIComponent('${encodedSubject}'))">
+            📝 Домашка
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>`;
+  });
+
+  html+="</div>";
+
+  return html;
 }
 
 
-/* =========================
+/* =============================
    НАВІГАЦІЯ
-========================= */
+============================= */
 
-let selectedDate =
-    dateOnly(new Date());
+let selectedDate=dateOnly(new Date());
 
+function renderWeekInfo(date){
 
-function showSelectedDay() {
+  const week=getAcademicWeek(date);
 
-    document.getElementById(
-        "headerDate"
-    ).textContent =
+  let text;
 
+  if(week<1){
+    text="Навчальний семестр ще не розпочався";
+  }
+  else if(week>15){
+    text="15 навчальних тижнів завершено";
+  }
+  else{
+    text=`📚 ${week}-й навчальний тиждень • ${
+      week%2===0?"парний":"непарний"
+    }`;
+  }
+
+  document.getElementById("weekInfo").innerHTML=
+    `<div class="week-info">${text}</div>`;
+}
+
+function showSelectedDay(){
+
+  document.getElementById("headerText").textContent=
     formatDate(selectedDate);
 
+  renderWeekInfo(selectedDate);
 
-    renderWeekInfo(
-        selectedDate
-    );
+  document.getElementById("scheduleContent").innerHTML=
+    renderDayCard(selectedDate);
+}
 
+function previousDay(){
+  selectedDate.setDate(selectedDate.getDate()-1);
+  selectedDate=dateOnly(selectedDate);
+  showSelectedDay();
+}
 
-    document.getElementById(
-        "content"
-    ).innerHTML =
+function nextDay(){
+  selectedDate.setDate(selectedDate.getDate()+1);
+  selectedDate=dateOnly(selectedDate);
+  showSelectedDay();
+}
 
-    renderDayCard(
-        selectedDate
-    );
+function goToday(){
+  selectedDate=dateOnly(new Date());
+  showSelectedDay();
+}
+
+function showWholeWeek(){
+
+  const current=dateOnly(selectedDate);
+
+  let day=current.getDay();
+
+  if(day===0)day=7;
+
+  const monday=new Date(current);
+
+  monday.setDate(
+    current.getDate()-day+1
+  );
+
+  renderWeekInfo(monday);
+
+  document.getElementById("headerText").textContent=
+    "Весь тиждень";
+
+  let html="";
+
+  for(let i=0;i<5;i++){
+
+    const d=new Date(monday);
+
+    d.setDate(monday.getDate()+i);
+
+    html+=renderDayCard(d);
+  }
+
+  document.getElementById("scheduleContent").innerHTML=html;
 }
 
 
-function previousDay() {
+/* =============================
+   ВКЛАДКИ
+============================= */
 
-    selectedDate.setDate(
-        selectedDate.getDate() - 1
-    );
+function openSchedule(){
 
-    selectedDate =
-        dateOnly(selectedDate);
+  document.getElementById("scheduleSection").classList.remove("hidden");
+  document.getElementById("homeworkSection").classList.add("hidden");
+  document.getElementById("homeworkFormSection").classList.add("hidden");
 
-    showSelectedDay();
+  document.getElementById("scheduleTab").classList.add("active");
+  document.getElementById("homeworkTab").classList.remove("active");
+
+  showSelectedDay();
+}
+
+function openHomework(){
+
+  document.getElementById("scheduleSection").classList.add("hidden");
+  document.getElementById("homeworkSection").classList.remove("hidden");
+  document.getElementById("homeworkFormSection").classList.add("hidden");
+
+  document.getElementById("scheduleTab").classList.remove("active");
+  document.getElementById("homeworkTab").classList.add("active");
+
+  document.getElementById("headerText").textContent=
+    "Домашні завдання";
+
+  renderHomework();
 }
 
 
-function nextDay() {
+/* =============================
+   HOMEWORK STORAGE
+============================= */
 
-    selectedDate.setDate(
-        selectedDate.getDate() + 1
-    );
+let homework=
+  JSON.parse(
+    localStorage.getItem("rz232_homework")||"[]"
+  );
 
-    selectedDate =
-        dateOnly(selectedDate);
-
-    showSelectedDay();
-}
-
-
-function goToday() {
-
-    selectedDate =
-        dateOnly(new Date());
-
-    showSelectedDay();
-}
+let currentFilter="all";
+let editingId=null;
 
 
-/* =========================
-   ВЕСЬ ТИЖДЕНЬ
-========================= */
+/* =============================
+   INDEXED DB ДЛЯ ФАЙЛІВ
+============================= */
 
-function showWholeWeek() {
+let db;
 
-    let current =
-        dateOnly(selectedDate);
+const dbRequest=
+  indexedDB.open("RZ232Files",1);
 
-    let dayNumber =
-        current.getDay();
+dbRequest.onupgradeneeded=function(e){
 
-    if (dayNumber === 0)
-        dayNumber = 7;
+  const database=e.target.result;
 
+  if(!database.objectStoreNames.contains("files")){
+    database.createObjectStore("files");
+  }
+};
 
-    const monday =
-        new Date(current);
+dbRequest.onsuccess=function(e){
+  db=e.target.result;
+};
 
-    monday.setDate(
-        current.getDate()
-        - dayNumber
-        + 1
-    );
+function saveFile(id,file){
 
+  return new Promise((resolve,reject)=>{
 
-    renderWeekInfo(monday);
-
-
-    document.getElementById(
-        "headerDate"
-    ).textContent =
-        "Весь тиждень";
-
-
-    let html = "";
-
-
-    for (let i = 0; i < 5; i++) {
-
-        const d =
-            new Date(monday);
-
-        d.setDate(
-            monday.getDate() + i
-        );
-
-        html +=
-            renderDayCard(d);
+    if(!db){
+      reject("DB not ready");
+      return;
     }
 
+    const transaction=
+      db.transaction("files","readwrite");
 
-    document.getElementById(
-        "content"
-    ).innerHTML = html;
+    const store=
+      transaction.objectStore("files");
+
+    store.put(file,String(id));
+
+    transaction.oncomplete=()=>resolve();
+    transaction.onerror=()=>reject();
+  });
+}
+
+function deleteStoredFile(id){
+
+  if(!db)return;
+
+  const transaction=
+    db.transaction("files","readwrite");
+
+  transaction
+    .objectStore("files")
+    .delete(String(id));
+}
+
+function openStoredFile(id){
+
+  if(!db){
+    alert("Файл ще не готовий. Спробуй ще раз.");
+    return;
+  }
+
+  const transaction=
+    db.transaction("files","readonly");
+
+  const request=
+    transaction
+      .objectStore("files")
+      .get(String(id));
+
+  request.onsuccess=function(){
+
+    const file=request.result;
+
+    if(!file){
+      alert("Файл не знайдено на цьому пристрої.");
+      return;
+    }
+
+    const url=URL.createObjectURL(file);
+
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=file.name||"file";
+    a.target="_blank";
+    a.click();
+
+    setTimeout(()=>{
+      URL.revokeObjectURL(url);
+    },3000);
+  };
 }
 
 
-/* Запуск */
+/* =============================
+   ФОРМА ДОМАШКИ
+============================= */
 
+function openHomeworkForm(subject=""){
+
+  document.getElementById("scheduleSection").classList.add("hidden");
+  document.getElementById("homeworkSection").classList.add("hidden");
+  document.getElementById("homeworkFormSection").classList.remove("hidden");
+
+  document.getElementById("headerText").textContent=
+    "Додати домашку";
+
+  editingId=null;
+
+  document.getElementById("formTitle").textContent=
+    "📝 Нова домашка";
+
+  document.getElementById("hwText").value="";
+  document.getElementById("hwDue").value="";
+  document.getElementById("hwFile").value="";
+  document.getElementById("currentFile").textContent="";
+
+  if(subject){
+    document.getElementById("hwSubject").value=subject;
+  }
+}
+
+function cancelHomeworkForm(){
+  openHomework();
+}
+
+function editHomework(id){
+
+  const item=
+    homework.find(x=>x.id===id);
+
+  if(!item)return;
+
+  editingId=id;
+
+  document.getElementById("homeworkSection").classList.add("hidden");
+  document.getElementById("scheduleSection").classList.add("hidden");
+  document.getElementById("homeworkFormSection").classList.remove("hidden");
+
+  document.getElementById("headerText").textContent=
+    "Редагування";
+
+  document.getElementById("formTitle").textContent=
+    "✏️ Редагувати домашку";
+
+  document.getElementById("hwSubject").value=
+    item.subject;
+
+  document.getElementById("hwText").value=
+    item.text;
+
+  document.getElementById("hwDue").value=
+    item.dueDate;
+
+  document.getElementById("hwFile").value="";
+
+  document.getElementById("currentFile").textContent=
+    item.fileName
+    ? "📎 Зараз прикріплено: "+item.fileName
+    : "";
+}
+
+
+/* =============================
+   ЗБЕРЕЖЕННЯ
+============================= */
+
+async function saveHomework(){
+
+  const subject=
+    document.getElementById("hwSubject").value;
+
+  const text=
+    document.getElementById("hwText").value.trim();
+
+  const dueDate=
+    document.getElementById("hwDue").value;
+
+  const fileInput=
+    document.getElementById("hwFile");
+
+  const file=fileInput.files[0];
+
+  if(!text){
+    alert("Напиши, що потрібно зробити.");
+    return;
+  }
+
+  if(!dueDate){
+    alert("Вкажи дату, до якої потрібно здати.");
+    return;
+  }
+
+  if(editingId){
+
+    const item=
+      homework.find(x=>x.id===editingId);
+
+    item.subject=subject;
+    item.text=text;
+    item.dueDate=dueDate;
+
+    if(file){
+
+      item.fileName=file.name;
+
+      try{
+        await saveFile(editingId,file);
+      }catch(e){
+        alert("Не вдалося зберегти файл.");
+      }
+    }
+
+  }else{
+
+    const id=Date.now();
+
+    const item={
+      id:id,
+      subject:subject,
+      text:text,
+      dueDate:dueDate,
+      done:false,
+      createdAt:new Date().toISOString(),
+      fileName:file?file.name:""
+    };
+
+    homework.push(item);
+
+    if(file){
+
+      try{
+        await saveFile(id,file);
+      }catch(e){
+        alert("Домашка збережена, але файл не вдалося зберегти.");
+      }
+    }
+  }
+
+  localStorage.setItem(
+    "rz232_homework",
+    JSON.stringify(homework)
+  );
+
+  editingId=null;
+
+  updateHomeworkCount();
+  openHomework();
+}
+
+
+/* =============================
+   СТАТУС ДЕДЛАЙНУ
+============================= */
+
+function getDeadlineInfo(dueDate){
+
+  const today=dateOnly(new Date());
+
+  const parts=dueDate.split("-");
+
+  const due=new Date(
+    Number(parts[0]),
+    Number(parts[1])-1,
+    Number(parts[2]),
+    12
+  );
+
+  const diff=
+    Math.round(
+      (due-today)/86400000
+    );
+
+  if(diff<0){
+    return{
+      text:`⚠️ Прострочено на ${Math.abs(diff)} дн.`,
+      className:"overdue"
+    };
+  }
+
+  if(diff===0){
+    return{
+      text:"🔥 Здати сьогодні",
+      className:"todayDeadline"
+    };
+  }
+
+  if(diff===1){
+    return{
+      text:"⏳ Здати завтра",
+      className:"soon"
+    };
+  }
+
+  if(diff<=3){
+    return{
+      text:`⏳ Залишилось ${diff} дні`,
+      className:"soon"
+    };
+  }
+
+  return{
+    text:`📅 До ${formatDueDate(dueDate)} • залишилось ${diff} дн.`,
+    className:""
+  };
+}
+
+function formatDueDate(dateString){
+
+  const p=dateString.split("-");
+
+  return `${p[2]}.${p[1]}.${p[0]}`;
+}
+
+
+/* =============================
+   HOMEWORK LIST
+============================= */
+
+function renderHomework(){
+
+  let list=[...homework];
+
+  const today=dateOnly(new Date());
+
+  list.sort((a,b)=>
+    a.dueDate.localeCompare(b.dueDate)
+  );
+
+  if(currentFilter==="active"){
+    list=list.filter(x=>{
+      if(x.done)return false;
+
+      const p=x.dueDate.split("-");
+      const due=
+        new Date(+p[0],+p[1]-1,+p[2],12);
+
+      return due>=today;
+    });
+  }
+
+  if(currentFilter==="overdue"){
+    list=list.filter(x=>{
+
+      if(x.done)return false;
+
+      const p=x.dueDate.split("-");
+      const due=
+        new Date(+p[0],+p[1]-1,+p[2],12);
+
+      return due<today;
+    });
+  }
+
+  if(currentFilter==="done"){
+    list=list.filter(x=>x.done);
+  }
+
+  const box=
+    document.getElementById("homeworkList");
+
+  if(!list.length){
+
+    box.innerHTML=`
+    <div class="day">
+      <div class="empty">
+        Тут поки нічого немає 😊
+      </div>
+    </div>`;
+
+    updateHomeworkCount();
+    return;
+  }
+
+  let html="";
+
+  list.forEach(item=>{
+
+    const deadline=
+      getDeadlineInfo(item.dueDate);
+
+    html+=`
+    <div class="hw-card ${item.done?"done":""}">
+
+      <div class="hw-title">
+        ${escapeHtml(item.subject)}
+      </div>
+
+      <div class="hw-text">
+        ${escapeHtml(item.text)}
+      </div>
+
+      <div class="deadline ${deadline.className}">
+        ${deadline.text}
+      </div>
+
+      ${
+        item.fileName
+        ? `
+        <div class="file-box">
+          📎 ${escapeHtml(item.fileName)}
+          <br>
+          <button
+            class="file-open"
+            onclick="openStoredFile(${item.id})">
+            Відкрити файл
+          </button>
+        </div>
+        `
+        : ""
+      }
+
+      <div class="hw-actions">
+
+        <button
+          class="done-btn"
+          onclick="toggleDone(${item.id})">
+          ${item.done?"↩️ Повернути":"✅ Виконано"}
+        </button>
+
+        <button
+          class="edit-btn"
+          onclick="editHomework(${item.id})">
+          ✏️ Змінити
+        </button>
+
+        <button
+          class="delete-btn"
+          onclick="deleteHomework(${item.id})">
+          🗑 Видалити
+        </button>
+
+      </div>
+
+    </div>`;
+  });
+
+  box.innerHTML=html;
+
+  updateHomeworkCount();
+}
+
+function toggleDone(id){
+
+  const item=
+    homework.find(x=>x.id===id);
+
+  if(!item)return;
+
+  item.done=!item.done;
+
+  localStorage.setItem(
+    "rz232_homework",
+    JSON.stringify(homework)
+  );
+
+  renderHomework();
+}
+
+function deleteHomework(id){
+
+  if(!confirm("Видалити цю домашку?"))
+    return;
+
+  homework=
+    homework.filter(x=>x.id!==id);
+
+  deleteStoredFile(id);
+
+  localStorage.setItem(
+    "rz232_homework",
+    JSON.stringify(homework)
+  );
+
+  renderHomework();
+}
+
+function setFilter(filter){
+
+  currentFilter=filter;
+
+  document
+    .querySelectorAll(".filters button")
+    .forEach(b=>b.classList.remove("active"));
+
+  const map={
+    all:"filterAll",
+    active:"filterActive",
+    overdue:"filterOverdue",
+    done:"filterDone"
+  };
+
+  document
+    .getElementById(map[filter])
+    .classList.add("active");
+
+  renderHomework();
+}
+
+function updateHomeworkCount(){
+
+  const active=
+    homework.filter(x=>!x.done).length;
+
+  document.getElementById("hwCount").textContent=
+    active>0?`(${active})`:"";
+}
+
+
+/* =============================
+   БЕЗПЕЧНЕ ВІДОБРАЖЕННЯ ТЕКСТУ
+============================= */
+
+function escapeHtml(text){
+
+  const div=
+    document.createElement("div");
+
+  div.textContent=text;
+
+  return div.innerHTML;
+}
+
+
+/* =============================
+   ЗАПУСК
+============================= */
+
+updateHomeworkCount();
 showSelectedDay();
 
 </script>
