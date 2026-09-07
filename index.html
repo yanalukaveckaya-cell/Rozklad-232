@@ -3,664 +3,452 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Розклад РЗ-232</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:#f3f5fa;
-  color:#1d2330;
+ margin:0;background:#f3f5fa;color:#1d2330;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
 }
-
-.container{
-  max-width:720px;
-  margin:auto;
-  padding:15px;
-}
+.container{max-width:720px;margin:auto;padding:15px}
 
 .header{
-  background:linear-gradient(135deg,#6574f7,#8b6df3);
-  color:white;
-  padding:24px 20px;
-  border-radius:22px;
-  margin-bottom:15px;
+ background:linear-gradient(135deg,#6574f7,#8b6df3);
+ color:white;padding:24px 20px;border-radius:22px;margin-bottom:14px
 }
+.header h1{margin:0;font-size:30px}
+.header p{margin:7px 0 0;opacity:.95}
 
-.header h1{
-  margin:0;
-  font-size:30px;
+.nav{
+ display:grid;grid-template-columns:1fr 1fr 1fr;
+ gap:7px;margin-bottom:8px
 }
-
-.header p{
-  margin:7px 0 0;
-  opacity:.95;
+.nav button,.weekbtn{
+ border:0;background:white;border-radius:13px;padding:13px 7px;
+ font-size:13px;font-weight:750;box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
-
-.buttons{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-bottom:15px;
-}
-
-button{
-  border:none;
-  padding:13px 8px;
-  border-radius:13px;
-  background:white;
-  font-size:14px;
-  font-weight:700;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-
-button.active{
-  background:#6574f7;
-  color:white;
-}
+.today{background:#6574f7!important;color:white}
+.weekbtn{width:100%;margin-bottom:13px}
 
 .weekinfo{
-  background:#fff5dc;
-  padding:11px 14px;
-  border-radius:12px;
-  margin-bottom:12px;
-  font-size:14px;
-  font-weight:700;
+ background:#fff4d8;padding:11px 14px;border-radius:12px;
+ margin-bottom:12px;font-size:14px;font-weight:700
 }
 
 .day{
-  background:white;
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:12px;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
+ background:white;border-radius:18px;padding:15px;margin-bottom:12px;
+ box-shadow:0 3px 12px rgba(0,0,0,.06)
 }
-
-.day-title{
-  font-size:21px;
-  font-weight:800;
-  margin-bottom:10px;
-}
-
-.date{
-  font-size:13px;
-  color:#777;
-  margin-left:5px;
-}
+.day-title{font-size:21px;font-weight:800;margin-bottom:8px}
+.date{font-size:13px;color:#777;margin-left:5px}
 
 .lesson{
-  display:grid;
-  grid-template-columns:82px 1fr;
-  gap:10px;
-  padding:13px 0;
-  border-top:1px solid #eee;
+ display:grid;grid-template-columns:78px 1fr;gap:10px;
+ padding:14px 0;border-top:1px solid #eee
 }
-
-.lesson:first-of-type{
-  border-top:none;
-}
-
-.time{
-  font-weight:800;
-  color:#4b59d4;
-  font-size:14px;
-}
-
-.number{
-  font-size:12px;
-  color:#888;
-  margin-top:3px;
-}
-
-.subject{
-  font-weight:800;
-  font-size:15px;
-  line-height:1.3;
-}
-
+.time{font-weight:800;color:#4b59d4;font-size:14px}
+.number{font-size:12px;color:#888;margin-top:3px}
+.subject{font-weight:800;font-size:15px;line-height:1.3}
 .type{
-  display:inline-block;
-  margin-top:6px;
-  font-size:12px;
-  font-weight:700;
-  padding:4px 8px;
-  border-radius:8px;
-  background:#eef0ff;
-  color:#4b59d4;
+ display:inline-block;margin-top:6px;background:#eef0ff;color:#4b59d4;
+ padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700
 }
+.teacher{font-size:13px;color:#777;margin-top:5px}
+.weeks{font-size:12px;color:#d26b00;margin-top:5px;font-weight:650}
 
-.teacher{
-  font-size:13px;
-  color:#777;
-  margin-top:5px;
+.join{
+ display:inline-block;margin-top:9px;text-decoration:none;
+ background:#6574f7;color:white;padding:9px 12px;
+ border-radius:10px;font-size:13px;font-weight:800
 }
+.empty{color:#777;padding:10px 0}
+.footer{text-align:center;color:#999;font-size:12px;margin:20px 0}
 
-.week{
-  font-size:12px;
-  color:#d26b00;
-  margin-top:4px;
-  font-weight:700;
-}
-
-.no-lessons{
-  color:#777;
-  padding:10px 0;
-}
-
-.footer{
-  text-align:center;
-  color:#999;
-  font-size:12px;
-  margin:20px 0;
-}
-
-@media(max-width:500px){
-  .buttons{
-    grid-template-columns:1fr;
-  }
-
-  .lesson{
-    grid-template-columns:75px 1fr;
-  }
+@media(max-width:400px){
+ .nav button{font-size:12px;padding:12px 4px}
+ .lesson{grid-template-columns:70px 1fr}
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-  <div class="header">
-    <h1>🎓 РЗ-232</h1>
-    <p id="headerInfo">Розклад занять</p>
-  </div>
+<div class="header">
+ <h1>🎓 РЗ-232</h1>
+ <p id="headerInfo">Розклад занять</p>
+</div>
 
-  <div class="buttons">
-    <button id="todayButton" onclick="showToday()">📅 Сьогодні</button>
-    <button id="tomorrowButton" onclick="showTomorrow()">➡️ Завтра</button>
-    <button id="weekButton" onclick="showWeek()">🗓 Весь тиждень</button>
-  </div>
+<div class="nav">
+ <button onclick="previousDay()">⬅️ Назад</button>
+ <button class="today" onclick="goToday()">📅 Сьогодні</button>
+ <button onclick="nextDay()">Вперед ➡️</button>
+</div>
 
-  <div id="weekInfo"></div>
+<button class="weekbtn" onclick="showWeek()">🗓 Весь тиждень</button>
 
-  <div id="schedule"></div>
+<div id="weekInfo"></div>
+<div id="schedule"></div>
 
-  <div class="footer">
-    Розклад РЗ-232 • 1 семестр
-  </div>
+<div class="footer">Розклад РЗ-232 • 1 семестр</div>
 
 </div>
 
 <script>
 
+/* 1-й навчальний тиждень: 01.09.2026.
+   Понеділок календарного тижня — 31.08.2026. */
+const firstWeekMonday = new Date(2026,7,31);
+
+const times={
+ 1:"08:00–09:35",
+ 2:"09:50–11:25",
+ 3:"11:40–13:15",
+ 4:"13:30–15:05"
+};
+
+/* ПОСИЛАННЯ */
+const links={
+ accessLecture:"https://meet.google.com/mgt-bmnn-hgu",
+
+ cloud:
+ "https://us04web.zoom.us/j/75523031710?pwd=8qb2Fz4vdLcajVKsxlX7chpuQ6PCSH.1",
+
+ methodsLab:
+ "https://us04web.zoom.us/j/5488209266?pwd=kAn1qlrBilMOIYGQ7ZDw48bFbBobCY.1&omn=74899672410",
+
+ steg:
+ "https://us05web.zoom.us/j/6012015122?pwd=bEp2tsMJoxeYHeevUVF1AQGR0GnBcG.1#success",
+
+ cyber:
+ "https://meet.google.com/hbq-szcd-tne",
+
+ protectedSystems:
+ "https://meet.google.com/rum-tati-rno"
+};
+
 /*
-1-й навчальний тиждень починається 01.09.2026.
-Для правильного підрахунку беремо понеділок цього тижня — 31.08.2026.
+weeks:
+all  = кожного тижня
+even = парні 2–14
+odd  = непарні
 */
 
-const firstWeekMonday = new Date(2026, 7, 31);
+const schedule={
 
-/* ЧАС ПАР */
-
-const times = {
-  1:"08:00–09:35",
-  2:"09:50–11:25",
-  3:"11:40–13:15",
-  4:"13:30–15:05"
-};
-
-
-/* РОЗКЛАД РЗ-232 */
-
-const schedule = {
-
-  1:{
-    name:"Понеділок",
-    lessons:[
-
-      {
-        number:1,
-        subject:"Основи стеганографії",
-        type:"Лекція",
-        teacher:"Борисенко П.І.",
-        weeks:"all"
-      },
-
-      {
-        number:3,
-        subject:"Основи захисту мобільних пристроїв",
-        type:"Лабораторна",
-        teacher:"",
-        weeks:"odd"
-      },
-
-      {
-        number:3,
-        subject:"Проєктування захищених інформаційних систем",
-        type:"Лабораторна",
-        teacher:"Шаповалов Т.В.",
-        weeks:"even"
-      }
-
-    ]
+1:{
+ name:"Понеділок",
+ lessons:[
+  {
+   number:1,
+   subject:"Основи стеганографії",
+   type:"Лекція",
+   teacher:"Борисенко П.І.",
+   weeks:"all",
+   link:links.steg
   },
 
-
-  2:{
-    name:"Вівторок",
-    lessons:[
-
-      {
-        number:1,
-        subject:"Управління доступом",
-        type:"Лекція",
-        teacher:"Сиротенко О.А.",
-        weeks:"all"
-      },
-
-      {
-        number:2,
-        subject:"Методи оцінки захищеності інформаційних систем",
-        type:"Лекція",
-        teacher:"Агаджанян О.В.",
-        weeks:"all"
-      },
-
-      {
-        number:3,
-        subject:"Основи захищених хмарних технологій",
-        type:"Лабораторна",
-        teacher:"Агаджанян О.В.",
-        weeks:"even"
-      }
-
-    ]
+  {
+   number:2,
+   subject:"Проєктування захищених інформаційних систем",
+   type:"Лекція",
+   teacher:"Шаповалов Т.В.",
+   weeks:"all",
+   link:links.protectedSystems
   },
 
-
-  3:{
-    name:"Середа",
-    lessons:[
-
-      {
-        number:2,
-        subject:"Основи стеганографії",
-        type:"Лабораторна",
-        teacher:"Борисенко П.І.",
-        weeks:"all"
-      },
-
-      {
-        number:3,
-        subject:"Управління кібербезпекою",
-        type:"Лекція",
-        teacher:"Мельник М.О.",
-        weeks:"all"
-      },
-
-      {
-        number:4,
-        subject:"Управління кібербезпекою",
-        type:"Лабораторна",
-        teacher:"Мельник М.О.",
-        weeks:"all"
-      }
-
-    ]
+  {
+   number:3,
+   subject:"Основи захисту мобільних пристроїв",
+   type:"Лабораторна",
+   teacher:"",
+   weeks:"odd",
+   link:""
   },
 
-
-  4:{
-    name:"Четвер",
-    lessons:[
-
-      {
-        number:1,
-        subject:"Управління доступом",
-        type:"Лабораторна",
-        teacher:"Вінницька І.С.",
-        weeks:"all"
-      },
-
-      {
-        number:2,
-        subject:"Методи оцінки захищеності інформаційних систем",
-        type:"Лабораторна",
-        teacher:"Дорофєєв Ю.М.",
-        weeks:"all"
-      },
-
-      {
-        number:3,
-        subject:"Основи захисту мобільних пристроїв",
-        type:"Лекція",
-        teacher:"",
-        weeks:"all"
-      }
-
-    ]
-  },
-
-
-  5:{
-    name:"П’ятниця",
-    lessons:[]
+  {
+   number:3,
+   subject:"Проєктування захищених інформаційних систем",
+   type:"Лабораторна",
+   teacher:"Шаповалов Т.В.",
+   weeks:"even",
+   link:links.protectedSystems
   }
+ ]
+},
+
+2:{
+ name:"Вівторок",
+ lessons:[
+  {
+   number:1,
+   subject:"Управління доступом",
+   type:"Лекція",
+   teacher:"Сиротенко О.А.",
+   weeks:"all",
+   link:links.accessLecture
+  },
+
+  {
+   number:2,
+   subject:"Методи оцінки захищеності інформаційних систем",
+   type:"Лекція",
+   teacher:"Агаджанян О.В.",
+   weeks:"all",
+   link:""
+  },
+
+  {
+   number:3,
+   subject:"Основи захищених хмарних технологій",
+   type:"Лабораторна",
+   teacher:"Агаджанян О.В.",
+   weeks:"even",
+   link:links.cloud
+  }
+ ]
+},
+
+3:{
+ name:"Середа",
+ lessons:[
+  {
+   number:2,
+   subject:"Основи стеганографії",
+   type:"Лабораторна",
+   teacher:"Борисенко П.І.",
+   weeks:"all",
+   link:links.steg
+  },
+
+  {
+   number:3,
+   subject:"Управління кібербезпекою",
+   type:"Лекція",
+   teacher:"Мельник М.О.",
+   weeks:"all",
+   link:links.cyber
+  },
+
+  {
+   number:4,
+   subject:"Управління кібербезпекою",
+   type:"Лабораторна",
+   teacher:"Мельник М.О.",
+   weeks:"all",
+   link:links.cyber
+  }
+ ]
+},
+
+4:{
+ name:"Четвер",
+ lessons:[
+  {
+   number:1,
+   subject:"Управління доступом",
+   type:"Лабораторна",
+   teacher:"Вінницька І.С.",
+   weeks:"all",
+   link:""
+  },
+
+  {
+   number:2,
+   subject:"Методи оцінки захищеності інформаційних систем",
+   type:"Лабораторна",
+   teacher:"Дорофєєв Ю.М.",
+   weeks:"all",
+   link:links.methodsLab
+  },
+
+  {
+   number:3,
+   subject:"Основи захисту мобільних пристроїв",
+   type:"Лекція",
+   teacher:"",
+   weeks:"all",
+   link:""
+  }
+ ]
+},
+
+5:{name:"П’ятниця",lessons:[]}
 
 };
 
 
-/* НОМЕР НАВЧАЛЬНОГО ТИЖНЯ */
+/* Поточна дата, яку переглядаємо */
+let selectedDate=new Date();
+
 
 function getWeekNumber(date){
-
-  const d = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate()
-  );
-
-  const start = new Date(firstWeekMonday);
-
-  const difference = d - start;
-
-  return Math.floor(
-    difference / (7*24*60*60*1000)
-  ) + 1;
+ const d=new Date(date.getFullYear(),date.getMonth(),date.getDate());
+ const start=new Date(firstWeekMonday);
+ return Math.floor((d-start)/(7*24*60*60*1000))+1;
 }
 
-
-/* ЧИ Є ПАРА НА ЦЬОМУ ТИЖНІ */
-
-function lessonIsActive(lesson,week){
-
-  if(week < 1 || week > 15){
-    return false;
-  }
-
-  if(lesson.weeks === "all"){
-    return true;
-  }
-
-  if(lesson.weeks === "even"){
-    return week >= 2 &&
-           week <= 14 &&
-           week % 2 === 0;
-  }
-
-  if(lesson.weeks === "odd"){
-    return week >= 1 &&
-           week <= 15 &&
-           week % 2 !== 0;
-  }
-
-  return true;
+function isActive(lesson,week){
+ if(week<1 || week>15)return false;
+ if(lesson.weeks==="all")return true;
+ if(lesson.weeks==="even")return week>=2 && week<=14 && week%2===0;
+ if(lesson.weeks==="odd")return week>=1 && week<=15 && week%2!==0;
+ return false;
 }
-
-
-/* ФОРМАТ ДАТИ */
 
 function formatDate(date){
-
-  return date.toLocaleDateString(
-    "uk-UA",
-    {
-      day:"2-digit",
-      month:"2-digit",
-      year:"numeric"
-    }
-  );
+ return date.toLocaleDateString("uk-UA",{
+  day:"2-digit",
+  month:"2-digit",
+  year:"numeric"
+ });
 }
 
-
-/* КАРТКА ОДНОГО ДНЯ */
+function weekLabel(type){
+ if(type==="even")return "Парні тижні: 2, 4, 6, 8, 10, 12, 14";
+ if(type==="odd")return "Непарні тижні: 1, 3, 5, 7, 9, 11, 13, 15";
+ return "Кожного тижня";
+}
 
 function createDay(date){
 
-  let dayNumber = date.getDay();
+ let dayNumber=date.getDay();
 
-  if(dayNumber === 0){
-    return `
-      <div class="day">
-        <div class="day-title">
-          Неділя
-          <span class="date">${formatDate(date)}</span>
-        </div>
-        <div class="no-lessons">Вихідний 🎉</div>
-      </div>
-    `;
-  }
+ if(dayNumber===0 || dayNumber===6){
+  const name=dayNumber===0?"Неділя":"Субота";
 
-  if(dayNumber === 6){
-    return `
-      <div class="day">
-        <div class="day-title">
-          Субота
-          <span class="date">${formatDate(date)}</span>
-        </div>
-        <div class="no-lessons">Вихідний 🎉</div>
-      </div>
-    `;
-  }
+  return `
+   <div class="day">
+    <div class="day-title">
+     ${name}
+     <span class="date">${formatDate(date)}</span>
+    </div>
+    <div class="empty">Вихідний 🎉</div>
+   </div>`;
+ }
 
-  const week = getWeekNumber(date);
-  const day = schedule[dayNumber];
+ const week=getWeekNumber(date);
+ const day=schedule[dayNumber];
 
-  const lessons = day.lessons.filter(
-    lesson => lessonIsActive(lesson,week)
-  );
+ const lessons=day.lessons.filter(x=>isActive(x,week));
 
-  let html = `
-    <div class="day">
-      <div class="day-title">
-        ${day.name}
-        <span class="date">${formatDate(date)}</span>
-      </div>
-  `;
+ let html=`
+ <div class="day">
+  <div class="day-title">
+   ${day.name}
+   <span class="date">${formatDate(date)}</span>
+  </div>`;
 
-  if(lessons.length === 0){
-    html += `
-      <div class="no-lessons">
-        Пар немає 🎉
-      </div>
-    `;
-  }
+ if(!lessons.length){
+  html+=`<div class="empty">Пар немає 🎉</div>`;
+ }
 
-  lessons.forEach(lesson=>{
+ lessons.forEach(x=>{
 
-    let weekText = "Кожного тижня";
+  html+=`
+  <div class="lesson">
 
-    if(lesson.weeks === "even"){
-      weekText = "Парні тижні: 2, 4, 6, 8, 10, 12, 14";
-    }
+   <div>
+    <div class="time">${times[x.number]}</div>
+    <div class="number">${x.number} пара</div>
+   </div>
 
-    if(lesson.weeks === "odd"){
-      weekText = "Непарні тижні: 1, 3, 5, 7, 9, 11, 13, 15";
-    }
+   <div>
+    <div class="subject">${x.subject}</div>
 
-    html += `
-      <div class="lesson">
+    ${x.type ? `<div class="type">${x.type}</div>` : ""}
 
-        <div>
-          <div class="time">
-            ${times[lesson.number]}
-          </div>
+    ${x.teacher ?
+      `<div class="teacher">👨‍🏫 ${x.teacher}</div>` : ""}
 
-          <div class="number">
-            ${lesson.number} пара
-          </div>
-        </div>
+    <div class="weeks">${weekLabel(x.weeks)}</div>
 
-        <div>
+    ${x.link ?
+      `<a class="join" href="${x.link}" target="_blank">
+       🎥 Приєднатися до пари
+       </a>` : ""}
 
-          <div class="subject">
-            ${lesson.subject}
-          </div>
+   </div>
 
-          ${lesson.type
-            ? `<div class="type">${lesson.type}</div>`
-            : ""
-          }
+  </div>`;
+ });
 
-          ${lesson.teacher
-            ? `<div class="teacher">👨‍🏫 ${lesson.teacher}</div>`
-            : ""
-          }
-
-          <div class="week">
-            ${weekText}
-          </div>
-
-        </div>
-
-      </div>
-    `;
-  });
-
-  html += "</div>";
-
-  return html;
+ html+="</div>";
+ return html;
 }
 
+function showWeekInfo(date){
+ const week=getWeekNumber(date);
 
-/* АКТИВНА КНОПКА */
+ let text;
 
-function activeButton(button){
+ if(week<1 || week>15){
+  text="Поза межами 1–15 навчальних тижнів";
+ }else{
+  text=`📚 ${week}-й навчальний тиждень • ${
+   week%2===0 ? "парний" : "непарний"
+  }`;
+ }
 
-  document
-    .querySelectorAll("button")
-    .forEach(b=>b.classList.remove("active"));
-
-  document
-    .getElementById(button)
-    .classList.add("active");
+ document.getElementById("weekInfo").innerHTML=
+ `<div class="weekinfo">${text}</div>`;
 }
 
+function renderDay(){
 
-/* СЬОГОДНІ */
+ document.getElementById("headerInfo").textContent=
+ formatDate(selectedDate);
 
-function showToday(){
+ showWeekInfo(selectedDate);
 
-  activeButton("todayButton");
-
-  const today = new Date();
-
-  const week = getWeekNumber(today);
-
-  document.getElementById("headerInfo").innerHTML =
-    `Сьогодні • ${formatDate(today)}`;
-
-  showWeekInfo(week);
-
-  document.getElementById("schedule").innerHTML =
-    createDay(today);
+ document.getElementById("schedule").innerHTML=
+ createDay(selectedDate);
 }
 
-
-/* ЗАВТРА */
-
-function showTomorrow(){
-
-  activeButton("tomorrowButton");
-
-  const tomorrow = new Date();
-
-  tomorrow.setDate(
-    tomorrow.getDate()+1
-  );
-
-  const week = getWeekNumber(tomorrow);
-
-  document.getElementById("headerInfo").innerHTML =
-    `Завтра • ${formatDate(tomorrow)}`;
-
-  showWeekInfo(week);
-
-  document.getElementById("schedule").innerHTML =
-    createDay(tomorrow);
+function previousDay(){
+ selectedDate.setDate(selectedDate.getDate()-1);
+ renderDay();
 }
 
+function nextDay(){
+ selectedDate.setDate(selectedDate.getDate()+1);
+ renderDay();
+}
 
-/* ВЕСЬ ТИЖДЕНЬ */
+function goToday(){
+ selectedDate=new Date();
+ renderDay();
+}
 
 function showWeek(){
 
-  activeButton("weekButton");
+ let d=new Date(selectedDate);
+ let day=d.getDay();
 
-  const today = new Date();
+ if(day===0)day=7;
 
-  let day = today.getDay();
+ const monday=new Date(d);
+ monday.setDate(d.getDate()-day+1);
 
-  if(day === 0){
-    day = 7;
-  }
+ showWeekInfo(monday);
 
-  const monday = new Date(today);
+ document.getElementById("headerInfo").textContent=
+ "Весь тиждень";
 
-  monday.setDate(
-    today.getDate() - day + 1
-  );
+ let html="";
 
-  const week = getWeekNumber(monday);
+ for(let i=0;i<5;i++){
+  const date=new Date(monday);
+  date.setDate(monday.getDate()+i);
+  html+=createDay(date);
+ }
 
-  document.getElementById("headerInfo").innerHTML =
-    `Розклад на тиждень`;
-
-  showWeekInfo(week);
-
-  let html = "";
-
-  for(let i=0;i<5;i++){
-
-    const date = new Date(monday);
-
-    date.setDate(
-      monday.getDate()+i
-    );
-
-    html += createDay(date);
-  }
-
-  document.getElementById("schedule").innerHTML =
-    html;
+ document.getElementById("schedule").innerHTML=html;
 }
 
-
-/* ІНФОРМАЦІЯ ПРО ТИЖДЕНЬ */
-
-function showWeekInfo(week){
-
-  let text;
-
-  if(week < 1 || week > 15){
-    text = "Зараз поза межами 1–15 навчальних тижнів";
-  }
-  else{
-
-    const type =
-      week % 2 === 0
-      ? "парний"
-      : "непарний";
-
-    text =
-      `📚 ${week}-й навчальний тиждень • ${type}`;
-  }
-
-  document.getElementById("weekInfo").innerHTML =
-    `<div class="weekinfo">${text}</div>`;
-}
-
-
-/* ВІДКРИВАЄМО СЬОГОДНІ */
-
-showToday();
+renderDay();
 
 </script>
-
 </body>
 </html>
