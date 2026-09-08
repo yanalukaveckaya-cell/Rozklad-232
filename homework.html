@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Домашні роботи РЗ-232</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#f3f5fa;
+  color:#1d2330;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+
+.container{
+  max-width:760px;
+  margin:auto;
+  padding:15px;
+}
+
+.header{
+  background:linear-gradient(135deg,#6574f7,#8568ed);
+  color:white;
+  border-radius:24px;
+  padding:26px 22px;
+  margin-bottom:14px;
+  box-shadow:0 7px 22px rgba(70,80,180,.16);
+}
+
+.header h1{
+  margin:0;
+  font-size:30px;
+}
+
+.header p{
+  margin:8px 0 0;
+  font-size:15px;
+  opacity:.95;
+}
+
+.top{
+  background:white;
+  border-radius:20px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.addBtn{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  background:#6574f7;
+  color:white;
+  padding:14px;
+  font-size:15px;
+  font-weight:850;
+}
+
+.filters{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.filters button{
+  flex:0 0 auto;
+  border:0;
+  border-radius:20px;
+  background:white;
+  padding:9px 12px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.filters button.active{
+  background:#6574f7;
+  color:white;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:11px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.card.done{
+  opacity:.58;
+}
+
+.card.done .subject{
+  text-decoration:line-through;
+}
+
+.subject{
+  font-size:17px;
+  font-weight:850;
+  line-height:1.35;
+}
+
+.text{
+  margin-top:9px;
+  line-height:1.45;
+  white-space:pre-wrap;
+}
+
+.deadline{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 9px;
+  background:#f0f1f6;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.deadline.soon{
+  background:#fff3d5;
+  color:#986000;
+}
+
+.deadline.today{
+  background:#ffe6d8;
+  color:#b84400;
+}
+
+.deadline.overdue{
+  background:#ffe2e2;
+  color:#b92323;
+}
+
+.fileBox{
+  background:#f5f6fa;
+  border-radius:10px;
+  padding:10px;
+  margin-top:9px;
+  font-size:13px;
+}
+
+.fileBox button{
+  border:0;
+  background:none;
+  color:#5262db;
+  padding:5px 0 0;
+  font-weight:800;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.actions button{
+  border:0;
+  border-radius:10px;
+  padding:9px 11px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.doneBtn{
+  background:#e5f6e9;
+  color:#28713a;
+}
+
+.editBtn{
+  background:#edf0ff;
+  color:#4857c8;
+}
+
+.deleteBtn{
+  background:#ffe7e7;
+  color:#b72f2f;
+}
+
+.formCard{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.formCard h2{
+  margin:0 0 15px;
+}
+
+.note{
+  background:#eef0ff;
+  color:#4c58a8;
+  padding:11px;
+  border-radius:11px;
+  font-size:12px;
+  line-height:1.4;
+  margin-bottom:14px;
+}
+
+.field{
+  margin-bottom:13px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid #dfe2eb;
+  background:white;
+  border-radius:11px;
+  padding:12px;
+  font-size:16px;
+  font-family:inherit;
+}
+
+.field textarea{
+  min-height:115px;
+  resize:vertical;
+}
+
+.formActions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.formActions button{
+  border:0;
+  border-radius:12px;
+  padding:12px;
+  font-weight:850;
+}
+
+.cancelBtn{
+  background:#edf0f5;
+}
+
+.saveBtn{
+  background:#6574f7;
+  color:white;
+}
+
+.empty{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  color:#888;
+  text-align:center;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.footer{
+  text-align:center;
+  color:#999;
+  font-size:12px;
+  padding:22px 0 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+  <h1>📚 Домашні роботи</h1>
+  <p>РЗ-232 • особистий органайзер</p>
+</div>
+
+<div id="listSection">
+
+  <div class="top">
+    <button class="addBtn" onclick="openForm()">＋ Додати домашку</button>
+  </div>
+
+  <div class="filters">
+    <button id="fAll" class="active" onclick="setFilter('all')">Усі</button>
+    <button id="fActive" onclick="setFilter('active')">⏳ Актуальні</button>
+    <button id="fSoon" onclick="setFilter('soon')">🔥 Найближчі</button>
+    <button id="fOverdue" onclick="setFilter('overdue')">⚠️ Прострочені</button>
+    <button id="fDone" onclick="setFilter('done')">✅ Виконані</button>
+  </div>
+
+  <div id="homeworkList"></div>
+
+</div>
+
+<div id="formSection" class="hidden">
+
+  <div class="formCard">
+
+    <h2 id="formTitle">📝 Нова домашка</h2>
+
+    <div class="note">
+      🔒 Завдання і файли зберігаються тільки на цьому пристрої.
+    </div>
+
+    <div class="field">
+      <label>📚 Предмет</label>
+      <select id="subject"></select>
+    </div>
+
+    <div class="field">
+      <label>📝 Завдання</label>
+      <textarea id="task" placeholder="Наприклад: виконати лабораторну №2, оформити звіт..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>📅 Здати до</label>
+      <input id="due" type="date">
+    </div>
+
+    <div class="field">
+      <label>📎 Прикріпити файл</label>
+      <input id="file" type="file">
+      <div id="currentFile" style="font-size:12px;color:#777;margin-top:6px"></div>
+    </div>
+
+    <div class="formActions">
+      <button class="cancelBtn" onclick="cancelForm()">Скасувати</button>
+      <button class="saveBtn" onclick="saveHomework()">💾 Зберегти</button>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  Домашні роботи РЗ-232 • 2026
+</div>
+
+</div>
+
+<script>
+
+const subjects=[
+  "Основи стеганографії",
+  "Проєктування захищених інформаційних систем",
+  "Управління доступом",
+  "Методи оцінки захищеності інформаційних систем",
+  "Основи захисту мобільних пристроїв",
+  "Управління кібербезпекою"
+];
+
+subjects.forEach(s=>{
+  const o=document.createElement("option");
+  o.value=s;
+  o.textContent=s;
+  document.getElementById("subject").appendChild(o);
+});
+
+let homework=[];
+
+try{
+  homework=JSON.parse(localStorage.getItem("rz232_homework_only")||"[]");
+}catch(e){
+  homework=[];
+}
+
+let editingId=null;
+let currentFilter="all";
+
+/* ФАЙЛИ */
+
+let fileDB;
+
+const dbRequest=indexedDB.open("RZ232HomeworkFiles",1);
+
+dbRequest.onupgradeneeded=e=>{
+  const db=e.target.result;
+  if(!db.objectStoreNames.contains("files")){
+    db.createObjectStore("files");
+  }
+};
+
+dbRequest.onsuccess=e=>{
+  fileDB=e.target.result;
+};
+
+function storeFile(id,file){
+  return new Promise((resolve,reject)=>{
+    if(!fileDB)return reject();
+
+    const tr=fileDB.transaction("files","readwrite");
+    tr.objectStore("files").put(file,String(id));
+
+    tr.oncomplete=resolve;
+    tr.onerror=reject;
+  });
+}
+
+function openFile(id){
+
+  if(!fileDB){
+    alert("Спробуй ще раз за секунду.");
+    return;
+  }
+
+  const tr=fileDB.transaction("files","readonly");
+  const req=tr.objectStore("files").get(String(id));
+
+  req.onsuccess=()=>{
+
+    const file=req.result;
+
+    if(!file){
+      alert("Файл не знайдено на цьому пристрої.");
+      return;
+    }
+
+    const url=URL.createObjectURL(file);
+
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=file.name||"file";
+    a.click();
+
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
+  };
+}
+
+function deleteStoredFile(id){
+
+  if(!fileDB)return;
+
+  const tr=fileDB.transaction("files","readwrite");
+  tr.objectStore("files").delete(String(id));
+}
+
+/* ФОРМА */
+
+function openForm(){
+
+  editingId=null;
+
+  document.getElementById("listSection").classList.add("hidden");
+  document.getElementById("formSection").classList.remove("hidden");
+
+  document.getElementById("formTitle").textContent="📝 Нова домашка";
+
+  document.getElementById("task").value="";
+  document.getElementById("due").value="";
+  document.getElementById("file").value="";
+  document.getElementById("currentFile").textContent="";
+}
+
+function cancelForm(){
+  document.getElementById("formSection").classList.add("hidden");
+  document.getElementById("listSection").classList.remove("hidden");
+  renderHomework();
+}
+
+function editHomework(id){
+
+  const item=homework.find(x=>x.id===id);
+
+  if(!item)return;
+
+  editingId=id;
+
+  document.getElementById("listSection").classList.add("hidden");
+  document.getElementById("formSection").classList.remove("hidden");
+
+  document.getElementById("formTitle").textContent="✏️ Редагувати домашку";
+
+  document.getElementById("subject").value=item.subject;
+  document.getElementById("task").value=item.text;
+  document.getElementById("due").value=item.dueDate;
+  document.getElementById("file").value="";
+
+  document.getElementById("currentFile").textContent=
+    item.fileName ? "📎 Прикріплено: "+item.fileName : "";
+}
+
+/* ЗБЕРЕЖЕННЯ */
+
+async function saveHomework(){
+
+  const subject=document.getElementById("subject").value;
+  const text=document.getElementById("task").value.trim();
+  const dueDate=document.getElementById("due").value;
+  const file=document.getElementById("file").files[0];
+
+  if(!text){
+    alert("Напиши домашнє завдання.");
+    return;
+  }
+
+  if(!dueDate){
+    alert("Вкажи дату здачі.");
+    return;
+  }
+
+  if(file && file.size>20*1024*1024){
+    alert("Максимальний розмір файла — 20 МБ.");
+    return;
+  }
+
+  if(editingId){
+
+    const item=homework.find(x=>x.id===editingId);
+
+    item.subject=subject;
+    item.text=text;
+    item.dueDate=dueDate;
+
+    if(file){
+      item.fileName=file.name;
+      try{
+        await storeFile(editingId,file);
+      }catch(e){}
+    }
+
+  }else{
+
+    const id=Date.now();
+
+    homework.push({
+      id,
+      subject,
+      text,
+      dueDate,
+      done:false,
+      fileName:file?file.name:"",
+      createdAt:new Date().toISOString()
+    });
+
+    if(file){
+      try{
+        await storeFile(id,file);
+      }catch(e){}
+    }
+  }
+
+  localStorage.setItem(
+    "rz232_homework_only",
+    JSON.stringify(homework)
+  );
+
+  editingId=null;
+
+  document.getElementById("formSection").classList.add("hidden");
+  document.getElementById("listSection").classList.remove("hidden");
+
+  renderHomework();
+}
+
+/* ДАТИ */
+
+function dateOnly(d){
+  return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12);
+}
+
+function dueObject(value){
+  const p=value.split("-");
+  return new Date(+p[0],+p[1]-1,+p[2],12);
+}
+
+function formatDue(value){
+  const p=value.split("-");
+  return `${p[2]}.${p[1]}.${p[0]}`;
+}
+
+function deadlineInfo(value){
+
+  const today=dateOnly(new Date());
+  const due=dueObject(value);
+
+  const diff=Math.round((due-today)/86400000);
+
+  if(diff<0){
+    return{
+      text:`⚠️ Прострочено на ${Math.abs(diff)} дн.`,
+      css:"overdue"
+    };
+  }
+
+  if(diff===0){
+    return{
+      text:"🔥 Здати сьогодні",
+      css:"today"
+    };
+  }
+
+  if(diff===1){
+    return{
+      text:"⏳ Здати завтра",
+      css:"soon"
+    };
+  }
+
+  if(diff<=3){
+    return{
+      text:`⏳ Залишилось ${diff} дн.`,
+      css:"soon"
+    };
+  }
+
+  return{
+    text:`📅 До ${formatDue(value)} • залишилось ${diff} дн.`,
+    css:""
+  };
+}
+
+/* СПИСОК */
+
+function renderHomework(){
+
+  let list=[...homework];
+
+  list.sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
+
+  const today=dateOnly(new Date());
+
+  if(currentFilter==="active"){
+    list=list.filter(x=>!x.done && dueObject(x.dueDate)>=today);
+  }
+
+  if(currentFilter==="soon"){
+    list=list.filter(x=>{
+      if(x.done)return false;
+      const diff=Math.round((dueObject(x.dueDate)-today)/86400000);
+      return diff>=0 && diff<=3;
+    });
+  }
+
+  if(currentFilter==="overdue"){
+    list=list.filter(x=>!x.done && dueObject(x.dueDate)<today);
+  }
+
+  if(currentFilter==="done"){
+    list=list.filter(x=>x.done);
+  }
+
+  const box=document.getElementById("homeworkList");
+
+  if(!list.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        Тут поки нічого немає 😊
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=list.map(item=>{
+
+    const d=deadlineInfo(item.dueDate);
+
+    return `
+      <div class="card ${item.done?"done":""}">
+
+        <div class="subject">
+          ${escapeHTML(item.subject)}
+        </div>
+
+        <div class="text">
+          ${escapeHTML(item.text)}
+        </div>
+
+        <div class="deadline ${d.css}">
+          ${d.text}
+        </div>
+
+        ${
+          item.fileName
+          ? `
+          <div class="fileBox">
+            📎 ${escapeHTML(item.fileName)}
+            <br>
+            <button onclick="openFile(${item.id})">
+              ⬇️ Відкрити файл
+            </button>
+          </div>
+          `
+          : ""
+        }
+
+        <div class="actions">
+
+          <button class="doneBtn" onclick="toggleDone(${item.id})">
+            ${item.done?"↩️ Повернути":"✅ Виконано"}
+          </button>
+
+          <button class="editBtn" onclick="editHomework(${item.id})">
+            ✏️ Змінити
+          </button>
+
+          <button class="deleteBtn" onclick="deleteHomework(${item.id})">
+            🗑 Видалити
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function toggleDone(id){
+
+  const item=homework.find(x=>x.id===id);
+
+  if(!item)return;
+
+  item.done=!item.done;
+
+  localStorage.setItem(
+    "rz232_homework_only",
+    JSON.stringify(homework)
+  );
+
+  renderHomework();
+}
+
+function deleteHomework(id){
+
+  if(!confirm("Видалити цю домашку?"))return;
+
+  homework=homework.filter(x=>x.id!==id);
+
+  deleteStoredFile(id);
+
+  localStorage.setItem(
+    "rz232_homework_only",
+    JSON.stringify(homework)
+  );
+
+  renderHomework();
+}
+
+function setFilter(filter){
+
+  currentFilter=filter;
+
+  document.querySelectorAll(".filters button")
+    .forEach(b=>b.classList.remove("active"));
+
+  const map={
+    all:"fAll",
+    active:"fActive",
+    soon:"fSoon",
+    overdue:"fOverdue",
+    done:"fDone"
+  };
+
+  document.getElementById(map[filter]).classList.add("active");
+
+  renderHomework();
+}
+
+function escapeHTML(text){
+  const div=document.createElement("div");
+  div.textContent=text;
+  return div.innerHTML;
+}
+
+renderHomework();
+
+</script>
+
+</body>
+</html>
